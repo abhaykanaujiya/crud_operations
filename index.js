@@ -5,11 +5,14 @@ const { default: mongoose } = require('mongoose');
 const url ='mongodb://localhost/AlienDBex'
 const app = express();
 mangoose.connect(url, { useNewUrlParser: true })
-const con = mongoose.connection
+const connection = mongoose.connection
 
-con.on('open', function () {
+connection.on('open', function () {
   console.log('contected....');
 })
+
+const alienRouter = require('./routes/aliens')
+app.use('/aliens',alienRouter)
 // const state = [];
 // app.use(bodyParser.json());
 // app.get('/user', (req, res) => {
